@@ -33,7 +33,6 @@ export default function MovieDetailPage() {
             {
                 singleFilm && (
                     <>
-                        <h1>{singleFilm.title}</h1>
                         <SingleCard movie={singleFilm} />
                     </>
                 )

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../components/Card"; // Assicurati che il componente Card sia impostato correttamente
+import Card from "../components/Card";
 
 function MoviesList() {
     const [movies, setMovies] = useState([]);
@@ -24,20 +24,20 @@ function MoviesList() {
 
     useEffect(() => {
         fetchMovies(); // Chiamata per recuperare i dati quando il componente viene montato
-    }, []); // L'array vuoto fa sì che la funzione venga chiamata solo una volta
+    }, []);
 
     return (
         <div className="container mt-4">
-            <h1>Bool Movies community</h1>
+            <h1 className="my-4">Bool Movies community</h1>
 
             {loading ? (
-                <p>Loading Movies...</p> // Mostra un messaggio di caricamento mentre i dati sono in fase di recupero
+                <p>Loading Movies...</p> // Messaggio di caricamento mentre i dati sono in fase di recupero
             ) : error ? (
-                <p>{error}</p> // Mostra l'errore se c'è stato un problema nel recupero dei dati
+                <p>{error}</p> // errore se c'è stato un problema nel recupero dei dati
             ) : (
                 <div className="row">
                     {movies.length === 0 ? (
-                        <p>No movies available.</p> // Mostra un messaggio se non ci sono film disponibili
+                        <p>No movies available.</p> // messaggio se non ci sono film disponibili
                     ) : (
                         movies.map((movie) => (
                             <Card key={movie.id} movie={movie} />

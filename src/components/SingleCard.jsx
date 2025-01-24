@@ -1,16 +1,18 @@
 export default function SingleCard({ movie }) {
+    const imgPath = "http://localhost:3000/images/" + movie.image;
     return (
         <div className="container mt-5">
+            <h3 className="fw-bold my-2">{movie.title}</h3>
             <div className="row">
                 <div className="col-md-4">
                     <img
-                        src={movie.image}
+                        src={`${imgPath}`}
                         alt={movie.title}
+                        className="singleCard"
                     />
                 </div>
 
                 <div className="col-md-8 d-flex flex-column justify-content-center">
-                    {/* <h3 className="fw-bold">{movie.title}</h3> */}
                     <p className="mb-1">
                         <strong>Regista:</strong> {movie.director}
                     </p>

@@ -17,7 +17,7 @@ function HeaderComponent() {
                     className="nav-link"
                     to={item.path}
                     style={({ isActive }) => ({
-                        color: isActive ? "#FFCA2D" : "#181818",
+                        color: isActive ? "#FFCA2D" : "white",
                     })}
                 >
                     {item.label}
@@ -29,9 +29,9 @@ function HeaderComponent() {
     return (
         <>
             <header>
-                <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <nav className="navbar navbar-expand-lg">
                     <div className="container-fluid">
-                        <NavLink className="navbar-brand" to="/movies">
+                        <NavLink className="navbar-brand" style={{ color: "#FFCA2D" }} to="/movies">
                             MyLogo
                         </NavLink>
                         <button
@@ -50,7 +50,7 @@ function HeaderComponent() {
                         </div>
                     </div>
                 </nav>
-            </header>
+            </header >
         </>
     )
 }

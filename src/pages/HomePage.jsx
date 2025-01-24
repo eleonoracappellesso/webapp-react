@@ -4,7 +4,9 @@ import FooterComponent from "../components/FooterComponent"
 export default function HomePage() {
     return (
         <>
-            <MoviesList />
+            <main>
+                <MoviesList />
+            </main>
             <FooterComponent />
         </>
     )

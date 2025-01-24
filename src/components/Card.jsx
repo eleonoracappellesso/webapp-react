@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function Card({ movie }) {
+    const imgPath = "http://localhost:3000/images/" + movie.image;
     return (
         <div className="col-md-4 mb-4">
             <div className="card h-100">
                 <img
-                    src={movie.image}
+                    src={`${imgPath}`}
                     className="card-img-top"
                     alt={movie.title}
                 />
