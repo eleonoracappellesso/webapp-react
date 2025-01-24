@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SingleCard from "../components/SingleCard";
+import ReviewList from "../components/ReviewList";
 
 
 const myApiUrl = 'http://localhost:3000';
@@ -33,7 +34,13 @@ export default function MovieDetailPage() {
             {
                 singleFilm && (
                     <>
-                        <SingleCard movie={singleFilm} />
+                        <div className="d-flex flex-column">
+                            <SingleCard movie={singleFilm} />
+                            <div className="container">
+                                <h3>Recensioni</h3>
+                                <ReviewList />
+                            </div>
+                        </div>
                     </>
                 )
 

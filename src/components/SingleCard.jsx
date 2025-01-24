@@ -22,7 +22,7 @@ export default function SingleCard({ movie }) {
                     <p className="mb-1">
                         <strong>Genere:</strong> {movie.genre}
                     </p>
-                    <p className="mt-3 fst-italic">{movie.abstract}</p>
+                    <p className="mt-3">{movie.abstract}</p>
                 </div>
             </div>
         </div>

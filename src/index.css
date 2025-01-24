@@ -26,7 +26,8 @@ div .container {
 
 .singleCard {
   width: 350px;
-  position: absolute;
+  /* position: absolute; */
+  margin-bottom: 10px;
 }
 
 
