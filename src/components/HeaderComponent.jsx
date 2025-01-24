@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const navmenu = [
     { path: "/movies", label: "Home" },
-    { path: "/form", label: "Write a review" },
+    // { path: "/form", label: "Write a review" },
     { path: "/about", label: "About Us" },
     { path: "/contact", label: "Contact Us" },
 
@@ -17,7 +17,7 @@ function HeaderComponent() {
                     className="nav-link"
                     to={item.path}
                     style={({ isActive }) => ({
-                        color: isActive ? "#FFCA2D" : "white",
+                        color: isActive ? "#FFCA2D" : "#181818",
                     })}
                 >
                     {item.label}
@@ -31,7 +31,7 @@ function HeaderComponent() {
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <NavLink className="navbar-brand" to="/">
+                        <NavLink className="navbar-brand" to="/movies">
                             MyLogo
                         </NavLink>
                         <button

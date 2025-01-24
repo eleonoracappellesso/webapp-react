@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import MovieDetailPage from "./pages/MovieDetailPage"
 import DefaultLayout from "./layout/DefaultLayout"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
 
 export default function App() {
   return (
@@ -13,6 +15,8 @@ export default function App() {
             <Route index Component={HomePage} />
             <Route path=":id" Component={MovieDetailPage} />
           </Route>
+          <Route path="/about" Component={About} />
+          <Route path="/contact" Component={Contact} />
         </Route>
       </Routes>
     </BrowserRouter>
