@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import SingleCard from "../components/SingleCard";
 
 
 const myApiUrl = 'http://localhost:3000';
@@ -26,14 +27,14 @@ export default function MovieDetailPage() {
             });
     }
 
-
     return (
         <div>
 
             {
                 singleFilm && (
                     <>
-                        <h1>Sono il post con id {id}</h1>
+                        <h1>{singleFilm.title}</h1>
+                        <SingleCard movie={singleFilm} />
                     </>
                 )
 
