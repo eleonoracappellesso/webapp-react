@@ -5,14 +5,14 @@ export default function Card({ movie }) {
         <div className="col-md-4 mb-4">
             <div className="card h-100">
                 <img
-                    src={movie.image_url}
+                    src={movie.image}
                     className="card-img-top"
                     alt={movie.title}
                 />
                 <div className="card-body">
                     <h5 className="card-title">{movie.title}</h5>
                     <p className="card-text">
-                        <strong>By {movie.author}</strong>
+                        <strong>By {movie.director}</strong>
                     </p>
                     <p className="card-text">
                         {movie.abstract}
