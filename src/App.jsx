@@ -11,7 +11,6 @@ export default function App() {
           <Route index Component={HomePage} />
           <Route path=":id" Component={MovieDetailPage} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   )
