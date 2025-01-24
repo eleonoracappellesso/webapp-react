@@ -19,7 +19,7 @@ export default function Card({ movie }) {
                         {movie.abstract}
                     </p>
 
-                    <Link to={`/movies/${movie.id}`} className="btn btn-warning">
+                    <Link to={`/movies/${movie.id}`} className="btn btn-warning" style={{ color: "#181818" }}>
                         Dettagli
                     </Link>
                 </div>
