@@ -1,63 +1,83 @@
-// import { useState } from 'react';
-// import styles from './Form.module.css'; // Stili per il form
+import { useState } from "react";
+// import axios from "axios";
 
-// export default function ReviewForm({ onPostReview }) {
-//     const [reviewText, setReviewText] = useState('');
-//     const [rating, setRating] = useState(5);
+const newReview = {
+    name: "",
+    vote: "",
+    text: "",
+};
 
-//     // Gestisce il cambiamento del testo della recensione
-//     const handleTextChange = (event) => {
-//         setReviewText(event.target.value);
-//     };
+// const apiUrl = import.meta.env.VITE_APIURL;
 
-//     // // Gestisce il cambiamento del voto (rating)
-//     // const handleRatingChange = (event) => {
-//     //     setRating(parseInt(event.target.value));
-//     // };
+export default function ReviewForm({ handleSubmit }) {
+    const [formData, setFormData] = useState(newReview);
 
-//     // Gestisce l'invio del form
-//     const handleSubmit = (event) => {
-//         event.preventDefault();
-//         onPostReview(reviewText, rating);
-//         setReviewText('');
-//     };
+    function handleInput(e) {
+        const value =
+            e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
+    }
 
-//     // Render delle stelle
-//     const renderStars = () => {
-//         const stars = [];
-//         for (let i = 1; i <= 5; i++) {
-//             stars.push(
-//                 <span
-//                     key={i}
-//                     className={i <= rating ? styles.filledStar : styles.emptyStar}
-//                     onClick={() => setRating(i)}
-//                 >
-//                     &#9733;
-//                 </span>
-//             );
-//         }
-//         return stars;
-//     };
+    function AddReview(e) {
+        e.preventDefault();
+        handleSubmit({ ...formData });
+        setFormData(newReview);
+    }
 
-//     return (
-//         <form onSubmit={handleSubmit} className={styles.form}>
-//             <div className={styles.formGroup}>
-//                 <label htmlFor="reviewText">Scrivi la tua recensione:</label>
-//                 <textarea
-//                     id="reviewText"
-//                     value={reviewText}
-//                     onChange={handleTextChange}
-//                     placeholder="Inserisci la tua recensione qui..."
-//                     className={styles.textarea}
-//                 />
-//             </div>
+    return (
+        <section>
+            <h5>Dicci cosa ne pensi!</h5>
+            <form onSubmit={AddReview}>
+                <div className="mb-2">
+                    <label htmlFor="username" className="form-label">
+                        Nome:
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        aria-describedby="namelHelp"
+                        value={formData.name}
+                        onChange={handleInput}
+                        name="name"
+                    />
+                    <div id="namelHelp" className="form-text">
+                        Scrivi il tuo nome
+                    </div>
+                </div>
+                <div className="mb-2">
+                    <label htmlFor="text" className="form-label">
+                        Aggiungi qui la tua recensione:
+                    </label>
+                    <textarea
+                        type="text"
+                        className="form-control"
+                        id="text"
+                        value={formData.text}
+                        onChange={handleInput}
+                        name="text"
+                    />
+                </div>
+                <div className="mb-2">
+                    <label htmlFor="number" className="form-label">
+                        Valutazione:
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        id="vote"
+                        min="0"
+                        max="10"
+                        value={formData.vote}
+                        onChange={handleInput}
+                        name="vote"
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Submit
+                </button>
+            </form>
 
-//             <div className={styles.formGroup}>
-//                 <label>Valuta il film:</label>
-//                 <div className={styles.stars}>{renderStars()}</div>
-//             </div>
-
-//             <button type="submit" className={styles.submitButton}>Posta recensione</button>
-//         </form>
-//     );
-// }
+        </section>
+    )
+}

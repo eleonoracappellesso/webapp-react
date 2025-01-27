@@ -38,7 +38,8 @@ h1 {
   font-style: normal;
 }
 
-h3 {
+h3,
+h5 {
   color: #F74366;
 }
 
