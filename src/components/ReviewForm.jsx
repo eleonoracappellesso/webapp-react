@@ -73,8 +73,8 @@ export default function ReviewForm({ handleSubmit }) {
                         name="vote"
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn" style={{ backgroundColor: "#FFCA2D" }}>
+                    Pubblica
                 </button>
             </form>
 
