@@ -30,9 +30,9 @@ export default function ReviewList() {
         for (let i = 1; i <= 5; i++) {
             stars.push(
                 i <= Math.ceil(vote / 2) ? (
-                    <FaStar key={i} />
+                    <FaStar key={i} className='stars filledStars' />
                 ) : (
-                    <FaRegStar key={i} />
+                    <FaRegStar key={i} className='stars' />
                 )
             );
         }

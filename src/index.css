@@ -41,3 +41,11 @@ h1 {
 h3 {
   color: #F74366;
 }
+
+.stars {
+  font-size: 1.5rem;
+}
+
+.filledStars {
+  color: gold;
+}

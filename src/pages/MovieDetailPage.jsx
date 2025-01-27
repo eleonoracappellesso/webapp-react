@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SingleCard from "../components/SingleCard";
 import ReviewList from "../components/ReviewList";
+// import ReviewForm from "../components/ReviewForm";
 
 
 const myApiUrl = 'http://localhost:3000';
@@ -34,13 +35,19 @@ export default function MovieDetailPage() {
             {
                 singleFilm && (
                     <>
-                        <div className="d-flex flex-column">
+                        <section className="d-flex flex-column">
                             <SingleCard movie={singleFilm} />
                             <div className="container">
-                                <h3>Recensioni</h3>
-                                <ReviewList />
+                                <div>
+                                    <h3>Recensioni</h3>
+                                    <ReviewList />
+                                </div>
+                                {/* <div>
+                                    <h3>Aggiungi recensione</h3>
+                                    <ReviewForm />
+                                </div> */}
                             </div>
-                        </div>
+                        </section>
                     </>
                 )
 

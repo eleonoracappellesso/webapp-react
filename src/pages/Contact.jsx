@@ -1,5 +1,7 @@
 export default function Contact() {
     return (
-        <h1>Contacts</h1>
+        <main className="container">
+            <h1 className="my-4">Contacts</h1>
+        </main>
     )
 }
