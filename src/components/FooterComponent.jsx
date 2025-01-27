@@ -1,7 +1,7 @@
 export default function FooterComponent() {
     return (
-        <div>
+        <footer>
             <h6 className="text-center">FOOTER</h6>
-        </div>
+        </footer>
     )
 }

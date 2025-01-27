@@ -30,6 +30,10 @@ div .container {
   margin-bottom: 10px;
 }
 
+footer {
+  color: #FFCA2D;
+  padding: 30px;
+}
 
 h1 {
   color: #F74366;
@@ -48,5 +52,5 @@ h5 {
 }
 
 .filledStars {
-  color: gold;
+  color: #FFCA2D;
 }

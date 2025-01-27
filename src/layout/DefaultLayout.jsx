@@ -1,5 +1,5 @@
 import HeaderComponent from "../components/HeaderComponent";
-// import FooterComponent from "../components/FooterComponent";
+import FooterComponent from "../components/FooterComponent";
 import { Outlet } from "react-router-dom";
 
 export default function DefaultLayout() {
@@ -7,7 +7,7 @@ export default function DefaultLayout() {
         <div>
             <HeaderComponent />
             <Outlet />
-            {/* <FooterComponent /> */}
+            <FooterComponent className="py-5" />
         </div>
     );
 }

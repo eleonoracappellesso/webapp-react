@@ -1,5 +1,4 @@
 import MoviesList from "../components/MoviesList"
-import FooterComponent from "../components/FooterComponent"
 
 export default function HomePage() {
     return (
@@ -7,7 +6,6 @@ export default function HomePage() {
             <main>
                 <MoviesList />
             </main>
-            <FooterComponent />
         </>
     )
 }
