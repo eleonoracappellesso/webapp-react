@@ -1,83 +1,105 @@
 import { useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
-const newReview = {
+const initialData = {
     name: "",
-    vote: "",
     text: "",
+    vote: "",
 };
 
-// const apiUrl = import.meta.env.VITE_APIURL;
 
-export default function ReviewForm({ handleSubmit }) {
-    const [formData, setFormData] = useState(newReview);
+export default function ReviewForm({ id, reloadReviews }) {
+    const [formData, setFormData] = useState(initialData);
+    const [isFormValidated, setIsFormValideted] = useState(true);
 
-    function handleInput(e) {
-        const value =
-            e.target.type === "checkbox" ? e.target.checked : e.target.value;
-        setFormData({ ...formData, [e.target.name]: value });
-    }
+    const apiUrl = import.meta.env.VITE_APIURL;
+    const movieEndPoint = `${apiUrl}/movies/${id}/reviews`
 
-    function AddReview(e) {
+
+    function handleSubmit(e) {
         e.preventDefault();
-        handleSubmit({ ...formData });
-        setFormData(newReview);
+        console.log(e);
+        setIsFormValideted(true);
+        if (!e.target.checkValidity()) {
+            return;
+        }
+
+        axios
+            .post(movieEndPoint, formData)
+            .then((res) => {
+                console.log(res);
+                setFormData(initialData);
+                setIsFormValideted(false);
+                reloadReviews();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                console.log("Finito");
+            });
+
+        //http://localhost:3000/movies/:id/reviews
     }
-
+    function setFieldValue(e) {
+        console.log(e.target.value, e.target.name);
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
     return (
-        <section>
-            <h5>Dicci cosa ne pensi!</h5>
-            <form onSubmit={AddReview}>
-                <div className="mb-2">
-                    <label htmlFor="username" className="form-label">
-                        Nome:
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        aria-describedby="namelHelp"
-                        value={formData.name}
-                        onChange={handleInput}
-                        name="name"
-                    />
-                    <div id="namelHelp" className="form-text">
-                        Scrivi il tuo nome
-                    </div>
-                </div>
-                <div className="mb-2">
-                    <label htmlFor="text" className="form-label">
-                        Aggiungi qui la tua recensione:
-                    </label>
-                    <textarea
-                        type="text"
-                        className="form-control"
-                        id="text"
-                        value={formData.text}
-                        onChange={handleInput}
-                        name="text"
-                    />
-                </div>
-                <div className="mb-2">
-                    <label htmlFor="number" className="form-label">
-                        Valutazione:
-                    </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        id="vote"
-                        min="0"
-                        max="10"
-                        value={formData.vote}
-                        onChange={handleInput}
-                        name="vote"
-                    />
-                </div>
-                <button type="submit" className="btn" style={{ backgroundColor: "#FFCA2D" }}>
-                    Pubblica
-                </button>
-            </form>
+        <div className="card">
+            <div className="card-body">
 
-        </section>
-    )
+                <form
+                    onSubmit={handleSubmit}
+                    className={` ${isFormValidated ? "was-validated" : "needs-validation"
+                        }`}
+                    noValidate
+                >
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            className="form-control"
+                            value={formData.name}
+                            onChange={setFieldValue}
+                            required
+                        />
+                        <div className="valid-feedback">Looks good!</div>
+                        <div className="invalid-feedback">Please choose a username.</div>
+                    </div>
+                    <div className="form-group">
+                        <label>Review</label>
+                        <textarea
+                            className="form-control"
+                            name="text"
+                            value={formData.text}
+                            onChange={setFieldValue}
+                            required
+                        ></textarea>
+                    </div>
+                    <div className="form-group">
+                        <label>Voto</label>
+                        <input
+                            type="number"
+                            min="1"
+                            max="10"
+                            step="1"
+                            name="vote"
+                            className="form-control"
+                            value={formData.vote}
+                            onChange={setFieldValue}
+                            required
+                        />
+                    </div>
+                    <div className="d-flex justify-content-end pt-3">
+                        <button type="submit" className="btn btn-primary">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 }

@@ -44,7 +44,7 @@ export default function MovieDetailPage() {
                                 </div>
                                 <div>
                                     <h3>Scrivi una recensione</h3>
-                                    <ReviewForm />
+                                    <ReviewForm id={id} reloadReviews={getData} />
                                 </div>
                             </div>
                         </section>
