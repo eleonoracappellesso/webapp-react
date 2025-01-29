@@ -10,18 +10,23 @@ const initialData = {
 
 export default function ReviewForm({ id, reloadReviews }) {
     const [formData, setFormData] = useState(initialData);
-    const [isFormValidated, setIsFormValideted] = useState(true);
-
+    const [isValid, setIsValid] = useState(true);
     const apiUrl = import.meta.env.VITE_APIURL;
     const movieEndPoint = `${apiUrl}/movies/${id}/reviews`
 
+    function validateForm() {
+        if (!formData.text || !formData.name) return false;
+        if (isNaN(formData.vote) || formData.vote < 1 || formData.vote > 10)
+            return false;
+        return true;
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(e);
-        setIsFormValideted(true);
-        if (!e.target.checkValidity()) {
-            return;
+
+        if (!validateForm()) {
+            return setIsValid(false);
         }
 
         axios
@@ -29,7 +34,7 @@ export default function ReviewForm({ id, reloadReviews }) {
             .then((res) => {
                 console.log(res);
                 setFormData(initialData);
-                setIsFormValideted(false);
+                setIsValid(true);
                 reloadReviews();
             })
             .catch((error) => {
@@ -49,12 +54,13 @@ export default function ReviewForm({ id, reloadReviews }) {
     return (
         <div className="card">
             <div className="card-body">
-
+                {!isValid && (
+                    <div className="alert alert-danger mb-3">
+                        The data in the form is not valid!
+                    </div>
+                )}
                 <form
                     onSubmit={handleSubmit}
-                    className={` ${isFormValidated ? "was-validated" : "needs-validation"
-                        }`}
-                    noValidate
                 >
                     <div className="form-group">
                         <label>Name</label>
@@ -64,9 +70,8 @@ export default function ReviewForm({ id, reloadReviews }) {
                             className="form-control"
                             value={formData.name}
                             onChange={setFieldValue}
-                            required
                         />
-                        <div className="valid-feedback">Looks good!</div>
+                        <div className="valid-feedback">Valid</div>
                         <div className="invalid-feedback">Please choose a username.</div>
                     </div>
                     <div className="form-group">
@@ -76,7 +81,6 @@ export default function ReviewForm({ id, reloadReviews }) {
                             name="text"
                             value={formData.text}
                             onChange={setFieldValue}
-                            required
                         ></textarea>
                     </div>
                     <div className="form-group">
@@ -90,7 +94,6 @@ export default function ReviewForm({ id, reloadReviews }) {
                             className="form-control"
                             value={formData.vote}
                             onChange={setFieldValue}
-                            required
                         />
                     </div>
                     <div className="d-flex justify-content-end pt-3">
